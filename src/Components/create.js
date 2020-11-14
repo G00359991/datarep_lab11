@@ -1,9 +1,10 @@
-import React from 'react'; // pulls in code from react to be used in create.js and allow for the code within to be outputted into the react app if necessary
+import React from 'react'; // pulls in code from react to be used in create.js and allow for the code within to be outputted into the app if necessary
+import axios from 'axios'; // pulls in code from axios to be used in create.js and allow for the code within to be outputted into the app if necessary
 import '../App.css';
 
 export class Create extends React.Component { // extends from and uses the code from react
     constructor() {
-        super();
+        super(); // calls parent's constructor method and gets access to the parent's properties and methods
 
         this.onSubmit = this.onSubmit.bind(this); // binds the code for the submit button to allow it to submit the contents entered
         this.onChangeTitle = this.onChangeTitle.bind(this); // binds the code for a movie title to be inputted and then submitted from the create.js page in the react app
@@ -34,11 +35,25 @@ export class Create extends React.Component { // extends from and uses the code 
             Poster: e.target.value
         });
     }
-    onSubmit(e) { /*calls the submit button's method on the create.js page to submit the information inputted */
+    onSubmit(e) { /*calls the submit button's method on the create.js page to submit the information inputted to the localhost port specified within the axios method in the url, logging into the console then if the server responded successfully, an error message to pop up if something goes wrong */
         e.preventDefault();
         alert("Movie: " + this.state.Title + " "
             + this.state.Year + " " +
             this.state.Poster);
+
+            const newMovie = {
+                title: this.state.Title,
+                year: this.state.Year,
+                poster: this.state.Poster
+            }
+            axios.post('http://localhost:4000/api/movies', newMovie)
+            .then((res)=>{
+                console.log(res);
+            })
+            .catch((err)=>{
+                console.log(err);
+            });
+
     }
 
     render() {

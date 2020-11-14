@@ -9,11 +9,11 @@ export class Read extends React.Component { // extends from and uses the code fr
         movies: []
     };
 
-    componentDidMount() { /* fetches the necessary jsonblob information to be outputted in read.js in order to acquire the necessary data for the movies to be outputted to the screen. An error message to pop up in case something goes wrong. */
-        axios.get('https://jsonblob.com/api/jsonblob/520c3b5e-0312-11eb-a6af-cbf00d776032')
+    componentDidMount() { /* fetches the necessary jsonblob information to be outputted in read.js in order to acquire the necessary data for the movies to be outputted to the screen at the localhost port specified below in the url. An error message to pop up in case something goes wrong. */
+        axios.get('http://localhost:4000/api/movies')
             .then(
                 (response) => {
-                    this.setState({ movies: response.data.Search })
+                    this.setState({ movies: response.data.movies })
                 }
             )
             .catch((error) => {
