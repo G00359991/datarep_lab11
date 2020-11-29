@@ -71,6 +71,14 @@ app.get('/api/movies/:id', (req, res)=>{ /*listens for the get request and then 
     })
 })
 
+app.delete('/api/movies/:id', (req, res) => { /*listens for the delete request and then deletes a previously inputted movie with the code below if it has that id. If successful, will log into the console that the movie was deleted */
+    console.log("Delete movie: "+ req.params.id);
+
+    MovieModel.findByIdAndDelete(req.params.id,(err, data)=>{
+        res.send(data);
+    })
+})
+
 
 app.post('/api/movies', (req, res) => { /* requests a response of the server to log into the console the year, title and poster of the movies, as well as the message saying the movie was received*/
     console.log('Movie recieved!');
