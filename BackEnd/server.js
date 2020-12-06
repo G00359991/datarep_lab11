@@ -71,6 +71,16 @@ app.get('/api/movies/:id', (req, res)=>{ /*listens for the get request and then 
     })
 })
 
+app.put('/api/movies/:id', (req, res)=>{ /*listens for the put request and then returns the movie with inputted id to the screen with the adjustments made. If successful, will log down into the console that said movie has been updated, and if not, an error will pop up. */
+    console.log("Update Movie: "+req.params.id);
+    console.log(req.body);
+
+    MovieModel.findByIdAndUpdate(req.params.id,req.body, {new:true},
+        (err,data)=>{
+            res.send(data);
+        })
+})
+
 app.delete('/api/movies/:id', (req, res) => { /*listens for the delete request and then deletes a previously inputted movie with the code below if it has that id. If successful, will log into the console that the movie was deleted */
     console.log("Delete movie: "+ req.params.id);
 

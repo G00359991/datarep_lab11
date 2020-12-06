@@ -9,7 +9,7 @@ import { Navbar, Nav } from 'react-bootstrap'; // pulls the navbar css from onli
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'; // pulls from react-router-dom that was installed to add to the app's navbar and links
 import { Create } from './Components/create'; // pulls in code from the create.js component to be used in App.js
 import { Read } from './Components/read'; // pulls in code from the read.js component to be used in App.js
-
+import { Edit } from './Components/edit'; // pulls in code from the edit.js component to be used in App.js
 
 class App extends React.Component { // extends from and uses the code from react
 
@@ -28,8 +28,9 @@ class App extends React.Component { // extends from and uses the code from react
           </Navbar>
           <Switch>
             <Route path='/' component={Content} exact></Route> 
-            <Route path='/create' component={Create} exact></Route>
-            <Route path='/read' component={Read} exact></Route>
+            <Route path='/create' component={Create} ></Route>
+            <Route path='/read' component={Read} ></Route>
+            <Route path='/edit/:id' component={Edit} ></Route> 
           </Switch>
       </div>
       </Router>
